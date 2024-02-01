@@ -1,0 +1,5 @@
+excluded:
+  - "R.generated.swift"
+
+force_cast: warning
+force_try: warning
