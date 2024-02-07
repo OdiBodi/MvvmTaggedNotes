@@ -1,13 +1,7 @@
 import UIKit
 
 class TagViewCell: UITableViewCell {
-    private lazy var nameLabel: UILabel = {
-        let label = UILabel()
-        label.translatesAutoresizingMaskIntoConstraints = false
-        label.font = .boldSystemFont(ofSize: 20)
-        label.textColor = .systemPink
-        return label
-    }()
+    private lazy var nameLabel = initializeNameLabel()
 
     override init(style: UITableViewCell.CellStyle, reuseIdentifier: String?) {
         super.init(style: style, reuseIdentifier: reuseIdentifier)
@@ -39,6 +33,14 @@ extension TagViewCell {
 // MARK: - Subviews
 
 extension TagViewCell {
+    private func initializeNameLabel() -> UILabel {
+        let label = UILabel()
+        label.translatesAutoresizingMaskIntoConstraints = false
+        label.font = .boldSystemFont(ofSize: 20)
+        label.textColor = .systemPink
+        return label
+    }
+
     private func addSubviews() {
         contentView.addSubview(nameLabel)
     }

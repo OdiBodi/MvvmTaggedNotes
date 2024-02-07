@@ -3,20 +3,7 @@ import Combine
 import SnapKit
 
 class NotesViewController: BaseCoordinatorModule<NotesModuleCompletion, Never> {
-    private lazy var tableView: UITableView = {
-        let view = UITableView(frame: .zero, style: .grouped)
-        view.translatesAutoresizingMaskIntoConstraints = false
-        view.backgroundColor = .systemBackground
-        view.dataSource = self
-        view.delegate = self
-        view.register(NoteViewCell.self, forCellReuseIdentifier: "NoteViewCell")
-        view.contentInset = UIEdgeInsets(top: 0, left: 0, bottom: 0, right: 0)
-        view.separatorInset = UIEdgeInsets(top: 0, left: 16, bottom: 0, right: 0)
-        view.allowsMultipleSelection = false
-        view.allowsSelectionDuringEditing = false
-        view.allowsMultipleSelectionDuringEditing = false
-        return view
-    }()
+    private lazy var tableView = initializeTableView()
 
     private var subscriptions = Set<AnyCancellable>()
 
@@ -81,6 +68,21 @@ extension NotesViewController {
 // MARK: - Subviews
 
 extension NotesViewController {
+    private func initializeTableView() -> UITableView {
+        let view = UITableView(frame: .zero, style: .grouped)
+        view.translatesAutoresizingMaskIntoConstraints = false
+        view.backgroundColor = .systemBackground
+        view.dataSource = self
+        view.delegate = self
+        view.register(NoteViewCell.self, forCellReuseIdentifier: "NoteViewCell")
+        view.contentInset = UIEdgeInsets(top: 0, left: 0, bottom: 0, right: 0)
+        view.separatorInset = UIEdgeInsets(top: 0, left: 16, bottom: 0, right: 0)
+        view.allowsMultipleSelection = false
+        view.allowsSelectionDuringEditing = false
+        view.allowsMultipleSelectionDuringEditing = false
+        return view
+    }
+
     private func addSubviews() {
         view.addSubview(tableView)
     }

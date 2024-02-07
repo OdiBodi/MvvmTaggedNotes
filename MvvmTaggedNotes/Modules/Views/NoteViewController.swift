@@ -3,37 +3,9 @@ import Combine
 import SnapKit
 
 class NoteViewController: UIViewController {
-    private lazy var verticalStack: UIStackView = {
-        let view = UIStackView()
-        view.translatesAutoresizingMaskIntoConstraints = false
-        view.axis = .vertical
-        view.spacing = 10
-        return view
-    }()
-
-    private lazy var tagButton: UIButton = {
-        let button = UIButton(type: .system)
-        button.translatesAutoresizingMaskIntoConstraints = false
-        button.setTitleColor(.systemBlue, for: .normal)
-        button.titleLabel?.font = .systemFont(ofSize: 18)
-        button.backgroundColor = .systemGray6
-        button.layer.cornerRadius = 10
-        button.showsMenuAsPrimaryAction = true
-        return button
-    }()
-
-    private lazy var descriptionText: UITextView = {
-        let view = UITextView()
-        view.translatesAutoresizingMaskIntoConstraints = false
-        view.delegate = self
-        view.font = .boldSystemFont(ofSize: 20)
-        view.textColor = .systemGray
-        view.textContainerInset = UIEdgeInsets(top: 10, left: 10, bottom: 10, right: 10)
-        view.backgroundColor = .systemGray6
-        view.layer.cornerRadius = 10
-        view.inputAccessoryView = initializeDescriptionTextToolbar()
-        return view
-    }()
+    private lazy var verticalStack = initializeVerticalStack()
+    private lazy var tagButton = initializeTagButton()
+    private lazy var descriptionText = initializeDescriptionText()
 
     private var keyboardHeight: CGFloat = 0
 
@@ -163,6 +135,38 @@ extension NoteViewController {
 // MARK: - Subviews
 
 extension NoteViewController {
+    private func initializeVerticalStack() -> UIStackView {
+        let view = UIStackView()
+        view.translatesAutoresizingMaskIntoConstraints = false
+        view.axis = .vertical
+        view.spacing = 10
+        return view
+    }
+
+    private func initializeTagButton() -> UIButton {
+        let button = UIButton(type: .system)
+        button.translatesAutoresizingMaskIntoConstraints = false
+        button.setTitleColor(.systemBlue, for: .normal)
+        button.titleLabel?.font = .systemFont(ofSize: 18)
+        button.backgroundColor = .systemGray6
+        button.layer.cornerRadius = 10
+        button.showsMenuAsPrimaryAction = true
+        return button
+    }
+
+    private func initializeDescriptionText() -> UITextView {
+        let view = UITextView()
+        view.translatesAutoresizingMaskIntoConstraints = false
+        view.delegate = self
+        view.font = .boldSystemFont(ofSize: 20)
+        view.textColor = .systemGray
+        view.textContainerInset = UIEdgeInsets(top: 10, left: 10, bottom: 10, right: 10)
+        view.backgroundColor = .systemGray6
+        view.layer.cornerRadius = 10
+        view.inputAccessoryView = initializeDescriptionTextToolbar()
+        return view
+    }
+
     private func addSubviews() {
         view.addSubview(verticalStack)
         verticalStack.addArrangedSubview(tagButton)

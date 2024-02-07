@@ -1,14 +1,7 @@
 import UIKit
 
 class NoteViewCell: UITableViewCell {
-    private lazy var descriptionLabel: UILabel = {
-        let label = UILabel()
-        label.translatesAutoresizingMaskIntoConstraints = false
-        label.numberOfLines = 3
-        label.font = .boldSystemFont(ofSize: 20)
-        label.textColor = .systemGray
-        return label
-    }()
+    private lazy var descriptionLabel = initializeDescriptionLabel()
 
     override init(style: UITableViewCell.CellStyle, reuseIdentifier: String?) {
         super.init(style: style, reuseIdentifier: reuseIdentifier)
@@ -40,6 +33,15 @@ extension NoteViewCell {
 // MARK: - Subviews
 
 extension NoteViewCell {
+    private func initializeDescriptionLabel() -> UILabel {
+        let label = UILabel()
+        label.translatesAutoresizingMaskIntoConstraints = false
+        label.numberOfLines = 3
+        label.font = .boldSystemFont(ofSize: 20)
+        label.textColor = .systemGray
+        return label
+    }
+
     private func addSubviews() {
         contentView.addSubview(descriptionLabel)
     }
