@@ -77,7 +77,7 @@ extension TagsViewController {
         view.backgroundColor = .systemBackground
         view.dataSource = self
         view.delegate = self
-        view.register(TagViewCell.self, forCellReuseIdentifier: "TagViewCell")
+        view.register(TagViewCell.self, forCellReuseIdentifier: TagViewCell.id)
         view.contentInset = UIEdgeInsets(top: 0, left: 0, bottom: 0, right: 0)
         view.separatorInset = UIEdgeInsets(top: 0, left: 16, bottom: 0, right: 0)
         view.allowsMultipleSelection = false
@@ -157,7 +157,7 @@ extension TagsViewController {
 
 extension TagsViewController: UITableViewDataSource {
     func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
-        let cell = tableView.dequeueReusableCell(withIdentifier: "TagViewCell", for: indexPath) as! TagViewCell
+        let cell = tableView.dequeueReusableCell(withIdentifier: TagViewCell.id, for: indexPath) as! TagViewCell
 
         let index = indexPath.item
         guard let tag = viewModel?.tags[index] else {

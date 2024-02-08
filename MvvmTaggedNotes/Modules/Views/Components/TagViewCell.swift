@@ -1,6 +1,8 @@
 import UIKit
 
 class TagViewCell: UITableViewCell {
+    static let id = "\(TagViewCell.self)"
+
     private lazy var nameLabel = initializeNameLabel()
 
     override init(style: UITableViewCell.CellStyle, reuseIdentifier: String?) {

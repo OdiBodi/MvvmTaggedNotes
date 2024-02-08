@@ -1,6 +1,8 @@
 import UIKit
 
 class NoteViewCell: UITableViewCell {
+    static let id = "\(NoteViewCell.self)"
+
     private lazy var descriptionLabel = initializeDescriptionLabel()
 
     override init(style: UITableViewCell.CellStyle, reuseIdentifier: String?) {

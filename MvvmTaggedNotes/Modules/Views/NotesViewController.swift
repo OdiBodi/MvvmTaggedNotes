@@ -74,7 +74,7 @@ extension NotesViewController {
         view.backgroundColor = .systemBackground
         view.dataSource = self
         view.delegate = self
-        view.register(NoteViewCell.self, forCellReuseIdentifier: "NoteViewCell")
+        view.register(NoteViewCell.self, forCellReuseIdentifier: NoteViewCell.id)
         view.contentInset = UIEdgeInsets(top: 0, left: 0, bottom: 0, right: 0)
         view.separatorInset = UIEdgeInsets(top: 0, left: 16, bottom: 0, right: 0)
         view.allowsMultipleSelection = false
@@ -116,7 +116,7 @@ extension NotesViewController: UITableViewDataSource {
     }
 
     func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
-        let cell = tableView.dequeueReusableCell(withIdentifier: "NoteViewCell", for: indexPath) as! NoteViewCell
+        let cell = tableView.dequeueReusableCell(withIdentifier: NoteViewCell.id, for: indexPath) as! NoteViewCell
 
         let section = indexPath.section
         let row = indexPath.row
