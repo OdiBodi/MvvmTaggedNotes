@@ -26,16 +26,24 @@ extension NoteViewController {
         configureView()
         configureNavigationItem()
 
-        subscribeOnNotificationCenter()
-
         addSubviews()
 
         updateApplyButtonItemEnabled()
     }
 
+    override func viewWillAppear(_ animated: Bool) {
+        super.viewWillAppear(animated)
+        subscribeOnNotificationCenter()
+    }
+
     override func viewDidLayoutSubviews() {
         super.viewDidLayoutSubviews()
         updateSubviewsContraints()
+    }
+
+    override func viewWillDisappear(_ animated: Bool) {
+        super.viewWillDisappear(animated)
+        unsubscribeFromNotificationCenter()
     }
 }
 
@@ -129,6 +137,10 @@ extension NoteViewController {
                            selector: #selector(onKeyboardWillHide),
                            name: UIResponder.keyboardWillHideNotification,
                            object: nil)
+    }
+
+    private func unsubscribeFromNotificationCenter() {
+        NotificationCenter.default.removeObserver(self)
     }
 }
 
