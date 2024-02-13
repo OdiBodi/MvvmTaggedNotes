@@ -1,8 +1,6 @@
 import UIKit
 
 class NoteViewCell: UITableViewCell {
-    static let id = "\(NoteViewCell.self)"
-
     private lazy var descriptionLabel = initializeDescriptionLabel()
 
     override init(style: UITableViewCell.CellStyle, reuseIdentifier: String?) {
@@ -13,6 +11,12 @@ class NoteViewCell: UITableViewCell {
     required init?(coder: NSCoder) {
         super.init(coder: coder)
     }
+}
+
+// MARK: - Static
+
+extension NoteViewCell {
+    static let id = "\(NoteViewCell.self)"
 }
 
 // MARK: - Life cycle

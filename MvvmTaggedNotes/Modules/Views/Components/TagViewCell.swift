@@ -1,8 +1,6 @@
 import UIKit
 
 class TagViewCell: UITableViewCell {
-    static let id = "\(TagViewCell.self)"
-
     private lazy var nameLabel = initializeNameLabel()
 
     override init(style: UITableViewCell.CellStyle, reuseIdentifier: String?) {
@@ -13,6 +11,12 @@ class TagViewCell: UITableViewCell {
     required init?(coder: NSCoder) {
         super.init(coder: coder)
     }
+}
+
+// MARK: - Static
+
+extension TagViewCell {
+    static let id = "\(TagViewCell.self)"
 }
 
 // MARK: - Life cycle
