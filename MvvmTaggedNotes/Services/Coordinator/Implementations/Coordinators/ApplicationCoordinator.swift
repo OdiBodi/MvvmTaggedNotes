@@ -2,7 +2,7 @@ import Combine
 import UIKit
 
 class ApplicationCoordinator: BaseCoordinator<Void, Never> {
-    private let tabBarController: TabBarController
+    private weak var tabBarController: TabBarController?
 
     init(tabBarController: TabBarController) {
         self.tabBarController = tabBarController
@@ -17,11 +17,11 @@ class ApplicationCoordinator: BaseCoordinator<Void, Never> {
 
 extension ApplicationCoordinator {
     private func configureTabBarModule() {
-        tabBarController.viewControllers = [
+        tabBarController?.viewControllers = [
             UINavigationController(rootViewController: notesModule()),
             UINavigationController(rootViewController: tagsModule())
         ]
-        tabBarController.completion.sink { completion in
+        tabBarController?.completion.sink { completion in
             switch completion {
             case .notesOpened(let viewController):
                 (viewController as? NotesViewController)?.scrollToTop()
