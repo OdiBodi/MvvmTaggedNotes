@@ -1,21 +1,31 @@
 import CoreData
 
 class Database {
-    static let shared = Database()
+    lazy var container: NSPersistentContainer = initializeContainer()
+}
 
-    lazy var container: NSPersistentContainer = {
+// MARK: - Static
+
+extension Database {
+    static let shared = Database()
+}
+
+// MARK: - Initializators
+
+extension Database {
+    private func initializeContainer() -> NSPersistentContainer {
         let container = NSPersistentContainer(name: "TaggedNotes")
 
         container.loadPersistentStores { (_, error) in
             if let error = error {
-                print("Database: container.loadPersistentStores error: \(error.localizedDescription)")
+                print("Database: loadPersistentStores error: \(error.localizedDescription)")
             } else {
-                print("Database: container.loadPersistentStores success!")
+                print("Database: loadPersistentStores success!")
             }
         }
 
         return container
-    }()
+    }
 }
 
 // MARK: - Operations
@@ -31,7 +41,7 @@ extension Database {
         do {
             try context.save()
         } catch {
-            print("Database: context.save error: \(error.localizedDescription)")
+            print("Database: save error: \(error.localizedDescription)")
         }
 
         print("Database: save success!")

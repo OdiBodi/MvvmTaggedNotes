@@ -28,11 +28,8 @@ extension NoteViewModel {
     func applyNote() {
         let database = Database.shared
 
-        guard let tagEntity = database.tag(id: tag.id) else {
-            return
-        }
-
-        guard let noteEntity = database.addNote(id: note.id, text: note.text, tag: tagEntity) else {
+        guard let tagEntity = database.tag(id: tag.id),
+              let noteEntity = database.addNote(id: note.id, text: note.text, tag: tagEntity) else {
             return
         }
 

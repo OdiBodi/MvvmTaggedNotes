@@ -165,11 +165,8 @@ extension NotesViewController: UITableViewDelegate {
         let section = indexPath.section
         let row = indexPath.row
 
-        guard let note = viewModel?.notes[section][row] else {
-            return
-        }
-
-        guard let tag = viewModel?.tags.first(where: { $0.id == note.tag }) else {
+        guard let note = viewModel?.notes[section][row],
+              let tag = viewModel?.tags.first(where: { $0.id == note.tag }) else {
             return
         }
 
